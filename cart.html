@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - ZifStore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/footer.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="contact-info">
+                    <a href="tel:0123456789"><i class="fas fa-phone"></i> 0123 456 789</a>
+                    <a href="mailto:info@zifstore.com"><i class="fas fa-envelope"></i> info@zifstore.com</a>
+                </div>
+                <div class="user-actions">
+                    <div id="loginRegister">
+                        <a href="index.html">Đăng nhập</a>
+                        <a href="register.html">Đăng ký</a>
+                    </div>
+                    <div id="userMenu" style="display: none;">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span class="user-name">Tên người dùng</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="user-dropdown">
+                            <a href="user.html">
+                                <i class="fas fa-user-circle"></i>
+                                Thông tin cá nhân
+                            </a>
+                            <a href="cart.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                Giỏ hàng
+                            </a>
+                            <a href="#" onclick="handleLogout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Đăng xuất
+                            </a>
+                        </div>
+                    </div>
+                    <a href="cart.html" id="cartLink" style="display: none;">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Giỏ hàng</span>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <a href="home.html" class="logo">ZifStore</a>
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="nav-links">
+                    <a href="home.html">Trang chủ</a>
+                    <a href="contact.html">Liên hệ</a>
+                    <a href="user.html">Tài khoản</a>
+                    <a href="cart.html">Giỏ hàng</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1 class="page-title">Giỏ hàng của bạn</h1>
+            
+            <div class="cart-content">
+                <div class="cart-items">
+                    <div class="cart-header">
+                        <div class="col-product">Sản phẩm</div>
+                        <div class="col-price">Đơn giá</div>
+                        <div class="col-quantity">Số lượng</div>
+                        <div class="col-total">Thành tiền</div>
+                        <div class="col-action">Xóa</div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="col-product">
+                            <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23tss001_black_1__1.jpg.webp" alt="Sản phẩm">
+                            <div class="product-info">
+                                <h3>Laptop Gaming MSI</h3>
+                                <p>Mã sản phẩm: LAP001</p>
+                            </div>
+                        </div>
+                        <div class="col-price">25.990.000₫</div>
+                        <div class="col-quantity">
+                            <div class="quantity-control">
+                                <button class="btn-quantity" onclick="updateQuantity('decrease')">-</button>
+                                <input type="number" value="1" min="1" max="10" id="quantity">
+                                <button class="btn-quantity" onclick="updateQuantity('increase')">+</button>
+                            </div>
+                        </div>
+                        <div class="col-total">25.990.000₫</div>
+                        <div class="col-action">
+                            <button class="btn-remove" onclick="removeItem(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Empty cart message -->
+                    <div class="empty-cart" style="display: none;">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Giỏ hàng của bạn đang trống</p>
+                        <a href="home.html" class="btn-continue">Tiếp tục mua sắm</a>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <h3>Tổng đơn hàng</h3>
+                    <div class="summary-item">
+                        <span>Tạm tính:</span>
+                        <span>25.990.000₫</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Phí vận chuyển:</span>
+                        <span>Miễn phí</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Tổng cộng:</span>
+                        <span>25.990.000₫</span>
+                    </div>
+                    <button class="btn-checkout" onclick="checkout()">Tiến hành thanh toán</button>
+                    <a href="home.html" class="btn-continue">Tiếp tục mua sắm</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Về ZifStore</h3>
+                    <p>ZifStore - Cửa hàng thời trang nam hiện đại, phong cách trẻ trung.</p>
+                    <p>Địa chỉ: 123 Đường ABC, Quận XYZ, TP. HCM</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="home.html">Trang chủ</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="user.html">Tài khoản</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Chính sách</h3>
+                    <ul>
+                        <li><a href="#warranty">Chính sách bảo hành</a></li>
+                        <li><a href="#return">Chính sách đổi trả</a></li>
+                        <li><a href="#shipping">Chính sách vận chuyển</a></li>
+                        <li><a href="#privacy">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Kết nối với chúng tôi</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p>Hotline: 0123 456 789</p>
+                    <p>Email: info@zifstore.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZifStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+        <script>
+        function updateQuantity(action) {
+            const input = document.getElementById('quantity');
+            let value = parseInt(input.value);
+            
+            if (action === 'increase' && value < 10) {
+                value++;
+            } else if (action === 'decrease' && value > 1) {
+                value--;
+            }
+            
+            input.value = value;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const price = 25990000;
+            const total = quantity * price;
+            
+            document.querySelector('.col-total').textContent = total.toLocaleString('vi-VN') + '₫';
+            document.querySelector('.summary-item.total span:last-child').textContent = total.toLocaleString('vi-VN') + '₫';
+        }
+
+        function removeItem(button) {
+            const item = button.closest('.cart-item');
+            item.remove();
+            
+            // Show empty cart message if no items left
+            const cartItems = document.querySelector('.cart-items');
+            if (!cartItems.querySelector('.cart-item')) {
+                document.querySelector('.empty-cart').style.display = 'block';
+                document.querySelector('.cart-summary').style.display = 'none';
+            }
+        }
+
+        function checkout() {
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true' || sessionStorage.getItem('isLoggedIn') === 'true';
+            
+            if (!isLoggedIn) {
+                alert('Vui lòng đăng nhập để thanh toán');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Here you would typically redirect to checkout page
+            alert('Chức năng thanh toán đang được phát triển');
+        }
+
+        // Initialize cart
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotal();
+        });
+    </script>
+</body>
+</html>

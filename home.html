@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZifStore - Thời trang nam</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Banner Slider Styles - Professional Look */
+.banner-slider {
+    width: 100%;
+    max-width: 1200px;
+    margin: 36px auto 48px auto;
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(33,150,243,0.10), 0 1.5px 8px rgba(60,64,67,0.08);
+    background: linear-gradient(120deg, #f8fafc 60%, #e3eafc 100%);
+}
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 370px;
+}
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0; top: 0;
+    transition: opacity 0.5s;
+}
+.slide.active {
+    display: block;
+    position: relative;
+    opacity: 1;
+    z-index: 1;
+    animation: fadeIn 0.7s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(1.03);}
+    to { opacity: 1; transform: scale(1);}
+}
+.slide img {
+    width: 100%;
+    height: 370px;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.92) blur(0.5px);
+    transition: filter 0.3s;
+}
+.slide.active img {
+    filter: brightness(1) blur(0px);
+}
+.banner-content {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #222;
+    background: rgba(255,255,255,0.82);
+    padding: 36px 48px;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(33,150,243,0.10);
+    min-width: 320px;
+    max-width: 440px;
+    backdrop-filter: blur(2px);
+    border-left: 4px solid var(--primary-color, #2196f3);
+}
+.banner-content h2 {
+    font-size: 2.5em;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--primary-color, #2196f3);
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px rgba(33,150,243,0.08);
+}
+.banner-content p {
+    font-size: 1.18em;
+    margin-bottom: 22px;
+    color: #333;
+    font-weight: 500;
+}
+.banner-content .btn {
+    background: linear-gradient(90deg, #2196f3 60%, #1769aa 100%);
+    color: #fff;
+    border: none;
+    border-radius: 28px;
+    padding: 14px 38px;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-decoration: none;
+    box-shadow: 0 2px 12px rgba(33,150,243,0.10);
+    transition: background 0.2s, transform 0.2s;
+    letter-spacing: 0.5px;
+}
+.banner-content .btn:hover {
+    background: linear-gradient(90deg, #1769aa 60%, #2196f3 100%);
+    transform: translateY(-2px) scale(1.04);
+}
+.slider-controls {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    z-index: 2;
+}
+.prev-btn, .next-btn {
+    background: rgba(255,255,255,0.92);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5em;
+    color: #2196f3;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(33,150,243,0.10);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    font-weight: bold;
+}
+.prev-btn:hover, .next-btn:hover {
+    background: #e3eafc;
+    color: #1769aa;
+    transform: scale(1.12);
+}
+.slider-dots {
+    display: flex;
+    gap: 10px;
+}
+.dot {
+    width: 14px;
+    height: 14px;
+    background: #b0c4de;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    border: 2px solid transparent;
+}
+.dot.active {
+    background: #2196f3;
+    border-color: #1769aa;
+    transform: scale(1.18);
+}
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 28px;
+    margin-top: 18px;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(33,150,243,0.08), 0 1px 4px rgba(60,64,67,0.07);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s, box-shadow 0.18s;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(33,150,243,0.13), 0 2px 8px rgba(60,64,67,0.10);
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    background: #f4f7fa;
+    border-bottom: 1px solid #e3eafc;
+}
+
+.product-info {
+    padding: 16px 14px 12px 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+.product-price {
+    font-size: 1.08em;
+    font-weight: 600;
+    color: #2196f3;
+    margin-bottom: 8px;
+}
+
+.product-description {
+    font-size: 0.98em;
+    color: #555;
+    margin-bottom: 12px;
+    min-height: 38px;
+}
+
+.product-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.add-to-cart, .btn-add-cart {
+    background: linear-gradient(90deg, #2196f3 60%, #1769aa 100%);
+    color: #fff;
+    border: none;
+    border-radius: 22px;
+    padding: 8px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.18s;
+    font-size: 1em;
+}
+
+.add-to-cart:hover, .btn-add-cart:hover {
+    background: linear-gradient(90deg, #1769aa 60%, #2196f3 100%);
+    transform: scale(1.06);
+}
+
+.view-details, .btn-quick-view {
+    background: #e3eafc;
+    color: #1769aa;
+    border: none;
+    border-radius: 22px;
+    padding: 8px 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.18s, color 0.18s;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.view-details:hover, .btn-quick-view:hover {
+    background: #2196f3;
+    color: #fff;
+}
+.add-to-wishlist {
+    background: #ffeaf0;
+    color: #e11d48;
+    border: none;
+    border-radius: 22px;
+    padding: 8px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, transform 0.18s;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.add-to-wishlist:hover {
+    background: #e11d48;
+    color: #fff;
+    transform: scale(1.06);
+}
+.add-to-wishlist.wishlist-active {
+    background: #e11d48;
+    color: #fff;
+}
+@media (max-width: 900px) {
+    .banner-slider, .slider-container, .slide img {
+        height: 220px;
+        min-height: 180px;
+    }
+    .banner-content {
+        left: 10px;
+        padding: 14px 14px;
+        min-width: 160px;
+        max-width: 220px;
+    }
+    .banner-content h2 {
+        font-size: 1.2em;
+    }
+    .banner-content p {
+        font-size: 1em;
+    }
+}
+@media (max-width: 600px) {
+    .banner-slider, .slider-container, .slide img {
+        height: 120px;
+    }
+    .banner-content {
+        left: 2px;
+        padding: 6px 8px;
+        min-width: 90px;
+        max-width: 120px;
+    }
+    .banner-content h2 {
+        font-size: 0.9em;
+    }
+    .banner-content p {
+        font-size: 0.8em;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="contact-info">
+                    <a href="tel:0123456789"><i class="fas fa-phone"></i> 0123 456 789</a>
+                    <a href="mailto:info@zifstore.com"><i class="fas fa-envelope"></i> info@zifstore.com</a>
+                </div>
+                <div class="user-actions">
+                    <div id="userMenu">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span class="user-name">Tên người dùng</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="user-dropdown">
+                            <a href="user.html">
+                                <i class="fas fa-user-circle"></i>
+                                Thông tin cá nhân
+                            </a>
+                            <a href="cart.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                Giỏ hàng
+                            </a>
+                            <a href="#" onclick="handleLogout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Đăng xuất
+                            </a>
+                        </div>
+                    </div>
+                    <a href="cart.html" id="cartLink">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Giỏ hàng</span>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <a href="home.html" class="logo">ZifStore</a>
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm thời trang nam...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="nav-links">
+                    <a href="home.html">Trang chủ</a>
+                    <a href="contact.html">Liên hệ</a>
+                    <a href="user.html">Tài khoản</a>
+                    <a href="cart.html">Giỏ hàng</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <!-- Banner Slider -->
+            <div class="banner-slider">
+                <div class="slider-container">
+                    <div class="slide active">
+                        <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10s23shl001_black_1__1.jpg.webp" alt="BST Sơ Mi Nam ZifStore">
+                        <div class="banner-content">
+                            <h2>Bộ Sưu Tập Sơ Mi Nam 2024</h2>
+                            <p>Phong cách lịch lãm, trẻ trung cho phái mạnh</p>
+                            <a href="home.html#featured" class="btn">Mua ngay</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23tss001_black_1__1.jpg.webp" alt="Áo thun nam ZifStore">
+                        <div class="banner-content">
+                            <h2>Áo Thun Nam ZifStore</h2>
+                            <p>Chất liệu cotton cao cấp, thoáng mát</p>
+                            <a href="home.html#featured" class="btn">Khám phá</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10s23pje001_black_1__1.jpg.webp" alt="Quần jean nam ZifStore">
+                        <div class="banner-content">
+                            <h2>Quần Jean Nam</h2>
+                            <p>Đa dạng kiểu dáng, dễ phối đồ</p>
+                            <a href="home.html#featured" class="btn">Xem ngay</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="prev-btn">&lt;</button>
+                    <div class="slider-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="next-btn">&gt;</button>
+                </div>
+            </div>
+
+            <!-- Featured Products Section -->
+            <section class="featured-products" id="featured">
+                <h2>Sản phẩm nổi bật</h2>
+                <div class="product-grid" id="featuredProducts">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10s23shl001_black_1__1.jpg.webp" alt="Áo sơ mi trắng nam">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Áo sơ mi trắng nam</h3>
+                            <div class="product-price">
+                                <span class="current-price">399.000₫</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-add-cart">Thêm vào giỏ</button>
+                                <button class="btn-quick-view"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23tss001_black_1__1.jpg.webp" alt="Áo thun đen nam">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Áo thun đen nam</h3>
+                            <div class="product-price">
+                                <span class="current-price">199.000₫</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-add-cart">Thêm vào giỏ</button>
+                                <button class="btn-quick-view"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10s23pje001_black_1__1.jpg.webp" alt="Quần jean nam">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Quần jean nam</h3>
+                            <div class="product-price">
+                                <span class="current-price">499.000₫</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-add-cart">Thêm vào giỏ</button>
+                                <button class="btn-quick-view"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23jac001_black_1__1.jpg.webp" alt="Áo khoác bomber nam">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Áo khoác bomber nam</h3>
+                            <div class="product-price">
+                                <span class="current-price">599.000₫</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-add-cart">Thêm vào giỏ</button>
+                                <button class="btn-quick-view"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23ves001_black_1__1.jpg.webp" alt="Vest nam cao cấp">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Vest nam cao cấp</h3>
+                            <div class="product-price">
+                                <span class="current-price">1.299.000₫</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-add-cart">Thêm vào giỏ</button>
+                                <button class="btn-quick-view"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23sho001_black_1__1.jpg.webp" alt="Quần short kaki nam">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Quần short kaki nam</h3>
+                            <div class="product-price">
+                                <span class="current-price">249.000₫</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-add-cart">Thêm vào giỏ</button>
+                                <button class="btn-quick-view"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23jac002_black_1__1.jpg.webp" alt="Áo khoác gió nam">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Áo khoác gió nam</h3>
+                            <div class="product-price">
+                                <span class="current-price">499.000₫</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-add-cart">Thêm vào giỏ</button>
+                                <button class="btn-quick-view"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23tss002_white_1__1.jpg.webp" alt="Áo thun trắng nam basic">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Áo thun trắng nam basic</h3>
+                            <div class="product-price">
+                                <span class="current-price">179.000₫</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-add-cart">Thêm vào giỏ</button>
+                                <button class="btn-quick-view"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- New Products Section -->
+            <section class="new-products">
+    <h2>Sản phẩm mới</h2>
+    <div class="product-grid" id="newProducts"></div>
+</section>
+            <!-- ...giữ nguyên các section khác nếu muốn... -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Về ZifStore</h3>
+                    <p>ZifStore - Thời trang nam hiện đại, phong cách trẻ trung, chất lượng cao cho phái mạnh Việt Nam.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="home.html">Trang chủ</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="user.html">Tài khoản</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên hệ</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận XYZ, TP.HCM</li>
+                        <li><i class="fas fa-phone"></i> +84 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> info@zifstore.com</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Theo dõi ZifStore</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZifStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Kiểm tra trạng thái đăng nhập
+            function checkLoginStatus() {
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                const userInfo = document.getElementById('userInfo');
+                const loginRegister = document.getElementById('loginRegister');
+                const userName = document.getElementById('userName');
+
+                if (isLoggedIn) {
+                    const userData = JSON.parse(localStorage.getItem('userData'));
+                    if (userData) {
+                        userName.textContent = `${userData.firstName} ${userData.lastName}`;
+                        userInfo.style.display = 'block';
+                        loginRegister.style.display = 'none';
+                    }
+                } else {
+                    userInfo.style.display = 'none';
+                    loginRegister.style.display = 'block';
+                }
+            }
+
+            // Xử lý đăng xuất
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userData');
+                    checkLoginStatus();
+                    window.location.href = 'home.html';
+                });
+            }
+
+            // Kiểm tra trạng thái đăng nhập khi trang được tải
+            checkLoginStatus();
+        });
+
+        // Seed dữ liệu sản phẩm nếu chưa có và wishlist helpers
+        function seedProducts() {
+            const existing = JSON.parse(localStorage.getItem('products') || '[]');
+            if (existing.length > 0) return;
+            const products = [
+                {id:1, name:'Áo sơ mi Oxford trắng', price:399000, image:'https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10s23shl001_black_1__1.jpg.webp', description:'Form slim, vải cotton thoáng mát', rating:4.8, category:'somi'},
+                {id:2, name:'Áo thun basic đen', price:199000, image:'https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23tss001_black_1__1.jpg.webp', description:'Cotton 100%, co giãn tốt', rating:4.7, category:'aothun'},
+                {id:3, name:'Quần jean slim fit xanh đậm', price:499000, image:'https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10s23pje001_black_1__1.jpg.webp', description:'Chất jean mềm, thoải mái', rating:4.6, category:'jean'},
+                {id:4, name:'Áo khoác bomber đen', price:599000, image:'https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23jac001_black_1__1.jpg.webp', description:'Phong cách trẻ trung', rating:4.9, category:'khoac'},
+                {id:5, name:'Vest nam basic đen', price:1299000, image:'https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23ves001_black_1__1.jpg.webp', description:'Lịch lãm, sang trọng', rating:4.8, category:'vest'},
+                {id:6, name:'Quần short kaki', price:249000, image:'https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23sho001_black_1__1.jpg.webp', description:'Thoải mái ngày hè', rating:4.5, category:'short'},
+                {id:7, name:'Áo khoác gió nam', price:499000, image:'https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23jac002_black_1__1.jpg.webp', description:'Chống gió nhẹ, dễ phối', rating:4.7, category:'khoac'},
+                {id:8, name:'Áo thun trắng basic', price:179000, image:'https://routine.vn/media/amasty/webp/catalog/product/cache/6f6a0fd3e2b2c1c6b4e3e6a5e2e2c2e2/1/0/10f23tss002_white_1__1.jpg.webp', description:'Đơn giản, dễ mặc', rating:4.6, category:'aothun'}
+            ];
+            localStorage.setItem('products', JSON.stringify(products));
+        }
+        function isProductInWishlist(id) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            return wishlist.includes(id);
+        }
+        function toggleWishlist(productId, btn) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            const idx = wishlist.indexOf(productId);
+            if (idx >= 0) {
+                wishlist.splice(idx, 1);
+                if (btn) btn.classList.remove('wishlist-active');
+                alert('Đã bỏ khỏi yêu thích');
+            } else {
+                wishlist.push(productId);
+                if (btn) btn.classList.add('wishlist-active');
+                alert('Đã thêm vào yêu thích!');
+            }
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+
+        // Hiển thị sản phẩm nổi bật
+        function displayFeaturedProducts() {
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const featuredProducts = products.filter(product => product.rating >= 4.7);
+            const featuredProductsContainer = document.getElementById('featuredProducts');
+            
+            featuredProductsContainer.innerHTML = featuredProducts.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price">${product.price.toLocaleString('vi-VN')}₫</div>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">Thêm vào giỏ</button>
+                            <button class="add-to-wishlist ${isProductInWishlist(product.id) ? 'wishlist-active' : ''}" onclick="toggleWishlist(${product.id}, this)"><i class="fas fa-heart"></i> Yêu thích</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Hiển thị sản phẩm mới
+        function displayNewProducts() {
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const newProducts = products.slice(-4); // Lấy 4 sản phẩm mới nhất
+            const newProductsContainer = document.getElementById('newProducts');
+            
+            newProductsContainer.innerHTML = newProducts.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price">${product.price.toLocaleString('vi-VN')}₫</div>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">Thêm vào giỏ</button>
+                            <button class="add-to-wishlist ${isProductInWishlist(product.id) ? 'wishlist-active' : ''}" onclick="toggleWishlist(${product.id}, this)"><i class="fas fa-heart"></i> Yêu thích</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Thêm vào giỏ hàng
+        function addToCart(productId) {
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const product = products.find(p => p.id === productId);
+            
+            if (product) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        quantity: 1
+                    });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                alert('Đã thêm sản phẩm vào giỏ hàng!');
+            }
+        }
+
+        // Cập nhật số lượng sản phẩm trong giỏ hàng
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = document.querySelector('.cart-count');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        // Khởi tạo trang
+        document.addEventListener('DOMContentLoaded', function() {
+            seedProducts();
+            displayFeaturedProducts();
+            displayNewProducts();
+            updateCartCount();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            // Auto slide
+            function startSlideInterval() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            function stopSlideInterval() {
+                clearInterval(slideInterval);
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', () => {
+                stopSlideInterval();
+                nextSlide();
+                startSlideInterval();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                stopSlideInterval();
+                prevSlide();
+                startSlideInterval();
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    stopSlideInterval();
+                    showSlide(index);
+                    startSlideInterval();
+                });
+            });
+
+            // Start auto slide
+            startSlideInterval();
+        });
+    </script>
+</body>
+</html>

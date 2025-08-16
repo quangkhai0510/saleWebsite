@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập - ZifStore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Đăng Nhập</h1>
+            <p>Chào mừng bạn quay trở lại với ZifStore!</p>
+        </div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error">Vui lòng nhập email hợp lệ</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <div class="password-toggle">
+                    <input type="password" id="password" name="password" required>
+                    <i class="fas fa-eye toggle-password"></i>
+                </div>
+                <div class="error">Vui lòng nhập mật khẩu</div>
+            </div>
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Ghi nhớ đăng nhập</label>
+                </div>
+                <a href="#" class="forgot-password">Quên mật khẩu?</a>
+            </div>
+            <button type="submit" class="login-btn">Đăng Nhập</button>
+        </form>
+        <div class="social-login">
+            <p>Hoặc đăng nhập với</p>
+            <div class="social-buttons">
+                <a href="#" class="social-btn facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-btn google">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="#" class="social-btn apple">
+                    <i class="fab fa-apple"></i>
+                </a>
+            </div>
+        </div>
+        <div class="register-link">
+            Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const togglePassword = document.querySelector('.toggle-password');
+            const passwordInput = document.getElementById('password');
+
+            // Toggle password visibility
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+
+            // Form validation
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+
+                // Email validation
+                const email = document.getElementById('email');
+                const emailError = email.nextElementSibling;
+                if (!email.value || !email.value.includes('@')) {
+                    email.classList.add('error');
+                    emailError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    email.classList.remove('error');
+                    emailError.style.display = 'none';
+                }
+
+                // Password validation
+                const password = document.getElementById('password');
+                const passwordError = password.parentElement.nextElementSibling;
+                if (!password.value || password.value.length < 6) {
+                    password.classList.add('error');
+                    passwordError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    password.classList.remove('error');
+                    passwordError.style.display = 'none';
+                }
+
+                if (isValid) {
+                    const users = JSON.parse(localStorage.getItem('users') || '[]');
+                    const emailVal = email.value.trim().toLowerCase();
+                    const passVal = password.value;
+                    const found = users.find(u => (u.email || '').toLowerCase() === emailVal && u.password === passVal);
+
+                    if (!found) {
+                        alert('Email hoặc mật khẩu không đúng.');
+                        return;
+                    }
+
+                    // Lưu trạng thái đăng nhập và thông tin người dùng
+                    localStorage.setItem('isLoggedIn', 'true');
+                    const userData = {
+                        firstName: found.firstName || '',
+                        lastName: found.lastName || '',
+                        email: found.email,
+                        role: found.role || 'user',
+                        lastLogin: new Date().toISOString()
+                    };
+                    localStorage.setItem('userData', JSON.stringify(userData));
+
+                    // Chuyển hướng đến trang chủ
+                    window.location.href = 'home.html';
+                }
+            });
+
+            // Kiểm tra email đã lưu
+            const rememberedEmail = localStorage.getItem('rememberedEmail');
+            if (rememberedEmail) {
+                document.getElementById('email').value = rememberedEmail;
+                document.getElementById('remember').checked = true;
+            }
+        });
+    </script>
+</body>
+</html>

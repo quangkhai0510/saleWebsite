@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - ZifStore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/footer.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <!-- Top Bar -->
+        <div class="top-header">
+            <div class="container">
+                <div class="contact-info">
+                    <a href="tel:+84123456789"><i class="fas fa-phone"></i> +84 123 456 789</a>
+                    <a href="mailto:info@zifstore.com"><i class="fas fa-envelope"></i> info@zifstore.com</a>
+                </div>
+                <div class="user-actions">
+                    <a href="user.html">
+                        <i class="fas fa-user"></i>
+                        <span>Tài khoản</span>
+                    </a>
+                    <a href="cart.html" id="cartLink">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Giỏ hàng</span>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="container">
+                <a href="home.html" class="logo">ZifStore</a>
+                <div class="search-bar">
+                    <form action="home.html" method="GET">
+                        <input type="text" name="search" placeholder="Tìm kiếm sản phẩm...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="nav-links">
+                    <a href="home.html">Trang chủ</a>
+                    <a href="contact.html" class="active">Liên hệ</a>
+                    <a href="user.html">Tài khoản</a>
+                    <a href="cart.html">Giỏ hàng</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-header">
+                    <h1>Liên Hệ Với Chúng Tôi</h1>
+                    <p>Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7. Hãy liên hệ với chúng tôi nếu bạn có bất kỳ câu hỏi nào về sản phẩm hoặc dịch vụ của chúng tôi.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <h2><i class="fas fa-envelope"></i> Gửi Tin Nhắn</h2>
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <label for="name">Họ và tên *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Số điện thoại</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Chủ đề *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Chọn chủ đề</option>
+                                    <option value="general">Thông tin chung</option>
+                                    <option value="product">Hỏi về sản phẩm</option>
+                                    <option value="order">Đơn hàng</option>
+                                    <option value="support">Hỗ trợ kỹ thuật</option>
+                                    <option value="complaint">Khiếu nại</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Nội dung tin nhắn *</label>
+                                <textarea id="message" name="message" placeholder="Hãy mô tả chi tiết vấn đề của bạn..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i> Gửi Tin Nhắn
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info-section">
+                        <div class="contact-card">
+                            <h3><i class="fas fa-map-marker-alt"></i> Địa Chỉ</h3>
+                            <p>123 Đường ABC, Quận 1</p>
+                            <p>Thành phố Hồ Chí Minh, Việt Nam</p>
+                        </div>
+
+                        <div class="contact-card">
+                            <h3><i class="fas fa-phone"></i> Điện Thoại</h3>
+                            <p><a href="tel:+84123456789">+84 123 456 789</a></p>
+                            <p><a href="tel:+84987654321">+84 987 654 321</a></p>
+                        </div>
+
+                        <div class="contact-card">
+                            <h3><i class="fas fa-envelope"></i> Email</h3>
+                            <p><a href="mailto:info@techzone.com">info@techzone.com</a></p>
+                            <p><a href="mailto:support@techzone.com">support@techzone.com</a></p>
+                        </div>
+
+                        <div class="contact-card">
+                            <h3><i class="fas fa-clock"></i> Giờ Làm Việc</h3>
+                            <p>Thứ 2 - Thứ 6: 8:00 - 18:00</p>
+                            <p>Thứ 7: 8:00 - 12:00</p>
+                            <p>Chủ nhật: Nghỉ</p>
+                        </div>
+
+                        <div class="contact-card">
+                            <h3><i class="fas fa-share-alt"></i> Mạng Xã Hội</h3>
+                            <p>
+                                <a href="#" style="margin-right: 15px;"><i class="fab fa-facebook"></i> Facebook</a>
+                                <a href="#" style="margin-right: 15px;"><i class="fab fa-instagram"></i> Instagram</a>
+                                <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section">
+            <div class="container">
+                <h2><i class="fas fa-map"></i> Vị Trí Của Chúng Tôi</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.424098981303!2d106.6983153148008!3d10.776888992319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f46f64b933f%3A0xf8a6e5b2a5a4f1f4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgVGjDtG5nIHRpbiB2aWV0!5e0!3m2!1svi!2s!4v1629789456789!5m2!1svi!2s" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2><i class="fas fa-question-circle"></i> Câu Hỏi Thường Gặp</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Làm thế nào để đặt hàng online?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Bạn có thể đặt hàng online bằng cách: 1) Chọn sản phẩm từ danh mục, 2) Thêm vào giỏ hàng, 3) Điền thông tin giao hàng, 4) Chọn phương thức thanh toán và xác nhận đơn hàng.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Thời gian giao hàng là bao lâu?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Thời gian giao hàng từ 1-3 ngày làm việc trong nội thành TP.HCM, 3-5 ngày cho các tỉnh lân cận, và 5-7 ngày cho các tỉnh xa.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Có chính sách đổi trả không?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Có, chúng tôi có chính sách đổi trả trong vòng 30 ngày kể từ ngày mua hàng với điều kiện sản phẩm còn nguyên vẹn và đầy đủ phụ kiện.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Bảo hành sản phẩm như thế nào?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tất cả sản phẩm đều có bảo hành chính hãng từ 12-24 tháng tùy theo loại sản phẩm. Bạn có thể mang sản phẩm đến trung tâm bảo hành hoặc liên hệ hotline để được hỗ trợ.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Có hỗ trợ thanh toán trả góp không?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Có, chúng tôi hỗ trợ thanh toán trả góp 0% lãi suất qua thẻ tín dụng của các ngân hàng đối tác. Bạn có thể chọn trả góp 3, 6, 12 hoặc 24 tháng.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Về ZifStore</h3>
+                    <p>ZifStore là cửa hàng thời trang nam hiện đại, cung cấp sản phẩm chất lượng với giá hợp lý.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liên Kết Nhanh</h3>
+                    <p><a href="home.html">Trang chủ</a></p>
+                    <p><a href="contact.html">Liên hệ</a></p>
+                    <p><a href="user.html">Tài khoản</a></p>
+                    <p><a href="cart.html">Giỏ hàng</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Hỗ Trợ Khách Hàng</h3>
+                    <p><a href="#">Hướng dẫn mua hàng</a></p>
+                    <p><a href="#">Chính sách bảo hành</a></p>
+                    <p><a href="#">Chính sách đổi trả</a></p>
+                    <p><a href="#">FAQ</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Thông Tin Liên Hệ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Q1, TP.HCM</p>
+                    <p><i class="fas fa-phone"></i> +84 123 456 789</p>
+                    <p><i class="fas fa-envelope"></i> info@zifstore.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZifStore. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

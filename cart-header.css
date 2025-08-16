@@ -1,0 +1,583 @@
+/* Header Styles for Cart Page */
+:root {
+    --primary-color: #1a73e8;
+    --primary-dark: #1557b0;
+    --primary-light: #e8f0fe;
+    --accent-color: #ea4335;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --divider-color: #dadce0;
+    --background-light: #f8f9fa;
+    --white: #FFFFFF;
+    --shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    --transition: all 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(120deg, #f8fafc 0%, #e3eafc 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header Styles */
+header {
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Top Header */
+.top-header {
+    background: var(--white);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.top-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-info {
+    display: flex;
+    gap: 20px;
+}
+
+.contact-info a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+}
+
+.contact-info a:hover {
+    color: var(--primary-color);
+}
+
+.contact-info i {
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+/* User Actions */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#userMenu {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: var(--transition);
+    background: var(--white);
+    border: 1px solid var(--divider-color);
+}
+
+.user-info:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-color);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--white);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    padding: 8px 0;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
+    margin-top: 5px;
+}
+
+#userMenu:hover .user-dropdown {
+    display: block;
+}
+
+.user-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.user-dropdown a:hover {
+    background: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.user-dropdown i {
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+#cartLink {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: var(--transition);
+    font-weight: 500;
+    position: relative;
+}
+
+#cartLink:hover {
+    background: var(--primary-dark);
+}
+
+#cartLink i {
+    font-size: 18px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--accent-color);
+    color: var(--white);
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justifyI will now add the header CSS styles from home.css into cart.css in a separate block at the end of the file to style the header on the cart page properly.
+
+<edit_file>
+<path>css/cart.css</path>
+<content>
+<<<<<<< SEARCH
+        @media (max-width: 600px) {
+            .cart-header {
+                display: none;
+            }
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 14px;
+            }
+            .col-product {
+                grid-column: 1 / -1;
+            }
+            .col-price, .col-quantity, .col-total, .col-action {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 6px 0;
+            }
+            .col-price::before {
+                content: 'Đơn giá: ';
+                font-weight: 600;
+            }
+            .col-quantity::before {
+                content: 'Số lượng: ';
+                font-weight: 600;
+            }
+            .col-total::before {
+                content: 'Thành tiền: ';
+                font-weight: 600;
+            }
+        }
+=======
+        @media (max-width: 600px) {
+            .cart-header {
+                display: none;
+            }
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 14px;
+            }
+            .col-product {
+                grid-column: 1 / -1;
+            }
+            .col-price, .col-quantity, .col-total, .col-action {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 6px 0;
+            }
+            .col-price::before {
+                content: 'Đơn giá: ';
+                font-weight: 600;
+            }
+            .col-quantity::before {
+                content: 'Số lượng: ';
+                font-weight: 600;
+            }
+            .col-total::before {
+                content: 'Thành tiền: ';
+                font-weight: 600;
+            }
+        }
+
+        /* Header Styles for Cart Page */
+        :root {
+            --primary-color: #1a73e8;
+            --primary-dark: #1557b0;
+            --primary-light: #e8f0fe;
+            --accent-color: #ea4335;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --divider-color: #dadce0;
+            --background-light: #f8f9fa;
+            --white: #FFFFFF;
+            --shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+            --transition: all 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(120deg, #f8fafc 0%, #e3eafc 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Top Header */
+        .top-header {
+            background: var(--white);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        .top-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+
+        .contact-info a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-info i {
+            font-size: 16px;
+            color: var(--primary-color);
+        }
+
+        /* User Actions */
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #userMenu {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: var(--transition);
+            background: var(--white);
+            border: 1px solid var(--divider-color);
+        }
+
+        .user-info:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-color);
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            border-radius: 4px;
+            box-shadow: var(--shadow);
+            padding: 8px 0;
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+            margin-top: 5px;
+        }
+
+        #userMenu:hover .user-dropdown {
+            display: block;
+        }
+
+        .user-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .user-dropdown a:hover {
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        .user-dropdown i {
+            color: var(--primary-color);
+            width: 20px;
+            text-align: center;
+        }
+
+        #cartLink {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+        }
+
+        #cartLink:hover {
+            background: var(--primary-dark);
+        }
+
+        #cartLink i {
+            font-size: 18px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent-color);
+            color: var(--white);
+            min-width: 18px;
+            height: 18px;
+            border-radius: 9px;
+            font-size: 11px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+            border: 2px solid var(--white);
+        }
+
+        /* Main Navigation */
+        .main-nav {
+            padding: 12px 0;
+            background: var(--white);
+        }
+
+        .main-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            transition: var(--transition);
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo:hover .logo-text {
+            color: var(--primary-dark);
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid var(--divider-color);
+            border-radius: 4px;
+            font-size: 14px;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 4px;
+            padding: 8px 16px;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-bar button:hover {
+            background: var(--primary-dark);
+        }
+
+        .search-bar button i {
+            font-size: 16px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+        }
